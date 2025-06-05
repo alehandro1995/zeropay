@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-gray-100 text-gray-900 font-sans;
+}
+
+.page {
+  @apply p-[20px];
+}
+
+.input {
+  @apply bg-white border border-gray-300 text-gray-600 rounded p-2 w-full;
+}
+
+.default-input {
+  @apply w-full border border-gray-600 rounded-sm p-2;
+}
+
+.btn{
+  @apply flex items-center justify-center gap-x-1 h-7 leading-0 border border-sky-700 p-2 rounded-sm text-sky-700 cursor-pointer hover:bg-sky-700 hover:text-white transition-colors duration-200;
+}
+
+.btn-primary{
+  @apply bg-sky-500 text-white font-bold py-2 px-4 rounded w-full cursor-pointer hover:bg-sky-700 transition-colors duration-200;
+}
+
+.btn-secondary{
+  @apply flex items-center justify-center gap-x-1 h-7 leading-0 border border-gray-900 p-2 rounded-sm text-gray-900 cursor-pointer hover:bg-gray-900 hover:text-white transition-colors duration-200;
+}
+
+.link{
+  @apply text-gray-600 hover:text-gray-900 duration-200 font-semibold cursor-pointer;
+}
+
+.link.active{
+  @apply text-gray-900;
+}
+
+.link-primary{
+  @apply text-gray-600 hover:text-sky-600 duration-200 font-bold cursor-pointer;
+}
+
+.link-primary.active{
+  @apply text-sky-600;
+}
+
+.modal-box{
+  @apply bg-black/60 fixed inset-0 z-50 flex justify-center overflow-y-auto pb-10;
+}
+
+.modal-content{
+  @apply flex flex-col gap-y-5 items-center bg-white rounded-lg w-[580px] h-min mt-20 relative;
+}
+
+.modal-content-lg{
+  @apply flex flex-col gap-y-5 items-center bg-white rounded-lg w-[800px] h-min mt-20 relative;
+}
+
+.error{
+  @apply text-red-500 text-sm absolute right-0 bottom-0;
+}
+
+.error-left{
+  @apply text-red-500 text-sm absolute left-0 bottom-0;
+}
+
+.row:nth-child(even) {
+	@apply bg-gray-100;
+}
+
+
