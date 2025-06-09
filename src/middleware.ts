@@ -6,8 +6,6 @@ export default async function middleware(req: NextRequest) {
 
   const cookie = (await cookies()).get('session')?.value
   const session = await decrypt(cookie)
-  console.log(session)
-  console.log(req.nextUrl.pathname)
   // 4. Redirect to /login if the user is not authenticated
   if (!session?.email || !session?.role) {
     return NextResponse.redirect(new URL('/login', req.nextUrl))

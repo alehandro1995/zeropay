@@ -47,8 +47,8 @@ function RequisiteItem({ item, index }: { item: Requisite; index: number }) {
 					}
 				</div>
 				<div className="flex flex-col col-span-2">
-					<span className="text-gray-400 text-[12px] font-semibold">
-						{item?.bankName.name}<br />{item?.paymentMethod.name}
+					<span className="text-gray-400 text-[12px] font-semibold ellipsis pr-2">
+						{item?.bankName.name} - {item?.paymentMethod.name}
 					</span>
 					<span>{item.card}</span>
 					<span>{item.cardOwner}</span>

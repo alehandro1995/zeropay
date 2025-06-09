@@ -37,8 +37,8 @@ function DealsItem({id, num, createdAt, status, amount, symbol, bankName, paymen
 				<p className="text-gray-400 text-xs">55,978260 USDT</p>
 			</div>
 			<div className="flex flex-col">
-				<span className="text-gray-400 text-[12px] font-semibold">
-					{bankName}<br />{paymentMethod}
+				<span className="text-gray-400 text-[12px] font-semibold ellipsis pr-2">
+					{bankName} - {paymentMethod}
 				</span>
 				<span>{cardOwner}</span>
 			</div>

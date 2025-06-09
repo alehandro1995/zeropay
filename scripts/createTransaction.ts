@@ -30,6 +30,7 @@ async function main() {
 	}
 
 	const randomNumber = Math.floor(Math.random() * 1000) + 1;
+	
   await prisma.transaction.create({
 		data: {
 			num: '23' + randomNumber.toString().padStart(3, '0'),

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {prisma} from "../../../../prisma/client";
-import UserItem from "../../../components/User"
+import UserItem from "../../../components/UserItem"
 
 export default async function AdminPage() {
   const users = await prisma.user.findMany({

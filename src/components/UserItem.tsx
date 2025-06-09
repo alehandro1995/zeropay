@@ -1,6 +1,8 @@
 "use client"
 import { useState } from "react";
+import { FaPencil } from "react-icons/fa6";
 import { changeBalance } from "@/actions/changeBalance";
+import Link from "next/link";
 
 type User = {
   id: number;
@@ -24,7 +26,7 @@ function UserItem({user}: {user:User}) {
   }
 
   return ( 
-    <div key={user.id} className="grid grid-cols-5 items-center bg-white p-5 rounded-md shadow-md">
+    <div key={user.id} className="grid grid-cols-6 items-center bg-white p-5 rounded-md shadow-md">
       <div><b>{user.id}.</b> {user.email}</div>
       <span>{user.inviteToken}</span>
       <span>{user.role}</span>
@@ -36,6 +38,9 @@ function UserItem({user}: {user:User}) {
         type="number"
       />
       <b className="text-right">{user.status ? "ACTIVE" : "STOP"}</b>
+			<Link href={`/admin/update/${user.id}`} className="text-right">
+				<FaPencil className="inline-block text-2xl" />
+			</Link>
     </div>
    );
 }
