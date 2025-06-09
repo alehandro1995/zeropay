@@ -8,18 +8,22 @@ datasource db {
 }
 
 model User {
-  id          	Int       @id @default(autoincrement())
-  email       	String    @unique(map: "User_email_key")
-  password    	String?
-  inviteToken 	String    @unique(map: "User_inviteToken_key")
-  role        	user_role @default(USER)
-  status      	Boolean   @default(false)
-  createdAt   	DateTime  @default(now())
-  balance     	Float     @default(0)
-	devices     	Device[]
-	groups      	Group[]
-	requisites    requisites[]
-	transactions  Transaction[]
+  id          			Int       		@id @default(autoincrement())
+  email       			String    		@unique(map: "User_email_key")
+  password    			String?
+  inviteToken 			String    		@unique(map: "User_inviteToken_key")
+  role        			user_role 		@default(USER)
+  status      			Boolean   		@default(false)
+  createdAt   			DateTime  		@default(now())
+  balance     			Float     		@default(0)
+	payInGambling			Float     		@default(0)
+	payOutGambling		Float   			@default(0)
+	payInExchangers		Float     		@default(0)
+	payOutExchangers	Float   			@default(0)
+	devices     			Device[]
+	groups      			Group[]
+	requisites    		requisites[]
+	transactions  		Transaction[]
 }
 
 model Device {
