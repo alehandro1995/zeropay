@@ -13,7 +13,11 @@ body {
 }
 
 .default-input {
-  @apply w-full border border-gray-600 rounded-sm p-2;
+  @apply w-full border border-gray-600 text-gray-600 rounded-sm p-2;
+}
+
+.default-input::placeholder {
+	@apply text-gray-600;
 }
 
 .btn{

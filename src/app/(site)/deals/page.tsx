@@ -37,9 +37,17 @@ export default async function Page() {
 		}
 	});
 
+	const currencies = await prisma.currency.findMany();
+	const banks = await prisma.bank_name.findMany();
+	const paymentMethod = await prisma.payment_method.findMany();
+
   return (
     <section className="page">
-			<DealsFilter />
+			<DealsFilter 
+				currencies={currencies}
+				banks={banks}
+				paymentMethod={paymentMethod}
+			/>
       <div className="flex flex-col p-5 bg-white shadow-sm rounded-2xl mt-8 text-sm">
         <div className="grid grid-cols-6 items-end border-b-[1px] border-gray-900 p-2 font-semibold">
           <div>ID/Дата</div>

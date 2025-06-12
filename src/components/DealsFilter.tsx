@@ -2,9 +2,11 @@
 import {useState, useRef, MouseEvent} from "react"
 import { IoSettingsSharp } from "react-icons/io5";
 import { ImSpinner2 } from "react-icons/im";
+import PaymentSetting from "@/components/modals/PaymentSetting";
 
-function DealsFilter() {
+function DealsFilter({currencies, banks, paymentMethod}: any) {
 	const [visible, setVisible] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 	
 	const boxRef = useRef<HTMLDivElement>(null);
 	const boxRef2 = useRef<HTMLDivElement>(null);
@@ -50,7 +52,9 @@ function DealsFilter() {
 				<div ref={boxRef2} className="flex gap-x-3 mt-2">
 					<button onClick={setActive2} className="link-primary active">Прием</button>
 					<button onClick={setActive2} className="link-primary">Выплата</button>
-					<button className="link-primary">
+					<button
+						onClick={() => setShowModal(true)} 
+						className="link-primary">
 						<IoSettingsSharp className="text-xl" />
 					</button>
 				</div>
@@ -62,6 +66,14 @@ function DealsFilter() {
         <ImSpinner2  className="animate-spin text-8xl text-amber-50 my-auto"/>
       </div>
     }
+		{showModal &&
+			<PaymentSetting
+				currencies={currencies}
+				banks={banks}
+				paymentMethod={paymentMethod}
+				close={() => setShowModal(false)}
+			/>
+		}			
 		</>
 	);
 }

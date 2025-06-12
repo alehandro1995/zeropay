@@ -4,6 +4,7 @@ import { randomBytes } from "crypto";
 import { redirect } from "next/navigation";
 import type { User } from "@prisma/client";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 
 export async function createUser(prevState: any, formData: FormData) {
 
@@ -68,4 +69,33 @@ export async function updateUser(formData: FormData) {
 
 	revalidatePath(`/admin`);
 	redirect(`/admin`);
+}
+
+export async function changePassword(prevState: any, formData: FormData): Promise<{ message: string }> {
+	const cookie = await cookies();
+	const email = cookie.get("email")?.value;
+	if (!email) {
+		throw new Error("User not authenticated");
+	}
+
+	const password = formData.get("password") as string;
+	const confirm = formData.get("confirm") as string;
+	if (!password || !confirm) {
+		throw new Error("Passwords do not match");
+	}
+
+	if (password !== confirm) {
+		return { message: "error" };
+	}
+
+	await prisma.user.update({
+		where: {
+			email: email
+		},
+		data: {
+			password: password
+		}
+	});
+
+	return { message: "success" };
 }

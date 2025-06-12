@@ -1,37 +1,41 @@
-"use client"
-import { useMemo } from "react";
+import {prisma} from "../../../../prisma/client";
+import PaymentsList from "@/components/ui/select/PaymentsList";
+import BankList from "@/components/ui/select/BanksList";
+import DeviceList from "@/components/ui/select/DeviceList"; 
+import DealStatus from "@/components/ui/select/DealStatus";
+import { cookies } from 'next/headers';
 
+export default async function Home() {
+	const cookie = await cookies();
+	const email = cookie.get('email')?.value;
+	const user = await prisma.user.findUnique({
+		where: {
+			email: email
+		}
+	});
 
-export default function Home() {
-  const currentDate = useMemo(() => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
+	if (!user) {
+		throw new Error('User not found');
+	}
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  }, []);
+	const banks = await prisma.bank_name.findMany();
+	const paymentMethod = await prisma.payment_method.findMany();
+	const devices = await prisma.device.findMany({
+		where: {
+			userId: user.id
+		}
+	});
+  
   return (
     <section className="page">
       <div className="flex items-center justify-between bg-white shadow-sm rounded-2xl p-5">
         <div className="grid grid-cols-4 xl:grid-cols-5 gap-5">
-          <input className="default-input" type="text" defaultValue={currentDate} />
+          <input className="default-input" type="text" placeholder="От даты" />
           <input className="default-input" type="text" placeholder="До даты" />
-          <select className="default-input">
-            <option>Статусы</option>
-          </select>
-          <select className="default-input">
-            <option>Способы оплаты</option>
-          </select>
-          <select className="default-input">
-            <option>Тип оплаты</option>
-          </select>
-          <select className="default-input">
-            <option>Устройства</option>
-          </select>
+          <DealStatus />
+					<BankList banks={banks} />
+          <PaymentsList payments={paymentMethod} />
+          <DeviceList devices={devices} />
         </div>
         <div className="flex gap-x-2">
           <button className="btn">Применить</button>

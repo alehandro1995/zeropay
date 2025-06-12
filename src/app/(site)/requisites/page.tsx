@@ -70,10 +70,10 @@ export default async function Page() {
 					<CurrenciesList currencies={currencies} />
 					<BanksList banks={banks} />
 				 	<PaymentsList payments={paymentMethod} />
-          <select className="default-input">
-            <option disabled={true}>Статус</option>
-            <option>активный</option>
-            <option>неактивный</option>
+          <select name="status" className="default-input">
+            <option value={""}>Статус</option>
+            <option value={"1"}>активный</option>
+            <option value={"0"}>неактивный</option>
           </select>
 					<GroupList groups={groups} />
         </div>
