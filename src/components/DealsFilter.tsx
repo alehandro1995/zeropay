@@ -3,8 +3,15 @@ import {useState, useRef, MouseEvent} from "react"
 import { IoSettingsSharp } from "react-icons/io5";
 import { ImSpinner2 } from "react-icons/im";
 import PaymentSetting from "@/components/modals/PaymentSetting";
+import { currency, bank_name, payment_method } from "@prisma/client";
 
-function DealsFilter({currencies, banks, paymentMethod}: any) {
+type DialsFilterProps = {
+	currencies: currency[];
+	banks: bank_name[];
+	paymentMethod: payment_method[];
+};
+
+function DealsFilter({currencies, banks, paymentMethod}: DialsFilterProps) {
 	const [visible, setVisible] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	

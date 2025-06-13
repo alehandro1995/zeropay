@@ -1,8 +1,5 @@
+import StatisticFilter from "@/components/StatisticFilter";
 import {prisma} from "../../../../prisma/client";
-import PaymentsList from "@/components/ui/select/PaymentsList";
-import BankList from "@/components/ui/select/BanksList";
-import DeviceList from "@/components/ui/select/DeviceList"; 
-import DealStatus from "@/components/ui/select/DealStatus";
 import { cookies } from 'next/headers';
 
 export default async function Home() {
@@ -28,20 +25,11 @@ export default async function Home() {
   
   return (
     <section className="page">
-      <div className="flex items-center justify-between bg-white shadow-sm rounded-2xl p-5">
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-5">
-          <input className="default-input" type="text" placeholder="От даты" />
-          <input className="default-input" type="text" placeholder="До даты" />
-          <DealStatus />
-					<BankList banks={banks} />
-          <PaymentsList payments={paymentMethod} />
-          <DeviceList devices={devices} />
-        </div>
-        <div className="flex gap-x-2">
-          <button className="btn">Применить</button>
-          <button className="btn-secondary">Сбросить</button>
-        </div>
-      </div>
+			<StatisticFilter 
+				banks={banks} 
+				paymentMethod={paymentMethod} 
+				devices={devices}
+			/>
       <div className="flex flex-col p-5 bg-white shadow-sm rounded-2xl mt-10 text-sm">
         <div className="w-full h-10 flex items-center justify-center bg-gray-600">
           <span className="text-white font-semibold">Всего</span>
