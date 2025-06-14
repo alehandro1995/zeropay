@@ -66,7 +66,7 @@ function DealsFilter({currencies, banks, paymentMethod}: DialsFilterProps) {
 					</button>
 				</div>
 			</div>
-			<button className="btn-secondary">Фильтр</button>
+			{/*<button className="btn-secondary">Фильтр</button>*/}
 		</div>
 		{visible &&
       <div className="modal-box">

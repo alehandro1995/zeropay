@@ -15,6 +15,7 @@ import UpdateRequisite from "@/components/modals/UpdateRequisite";
 import ModalControl from "@/components/ui/button/ModalControl";
 import { cookies } from 'next/headers';
 import { ModalTypes } from "@/store/modal";
+import RequisitesFilter from "@/components/RequisitesFilter";
 
 export default async function Page() {
 	const cookie = await cookies();
@@ -65,23 +66,12 @@ export default async function Page() {
   return (
 		<>
 		<section className="page">
-      <div className="flex items-center justify-between bg-white shadow-sm rounded-2xl p-5">
-        <div className="grid grid-cols-4 xl:grid-cols-5 gap-5">
-					<CurrenciesList currencies={currencies} />
-					<BanksList banks={banks} />
-				 	<PaymentsList payments={paymentMethod} />
-          <select name="status" className="default-input">
-            <option value={""}>Статус</option>
-            <option value={"1"}>активный</option>
-            <option value={"0"}>неактивный</option>
-          </select>
-					<GroupList groups={groups} />
-        </div>
-        <div className="flex gap-x-2">
-          <button className="btn">Применить</button>
-          <button className="btn-secondary">Сбросить</button>
-        </div>
-      </div>
+      <RequisitesFilter 
+				currencies={currencies}
+				banks={banks}
+				paymentMethod={paymentMethod}
+				groups={groups}
+			/>
       <div className="flex flex-col p-5 bg-white shadow-sm rounded-2xl mt-8 text-sm">
 				<div className="flex gap-5 mb-5">
 					<ModalControl icon={<MdPhoneIphone />} text={"Устройства"} type={ModalTypes.ADD_DEVICE} />
