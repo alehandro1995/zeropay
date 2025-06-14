@@ -24,7 +24,7 @@ export default function Header() {
     <header className="flex h-16 bg-white shadow-sm px-4">
       <Link href="/" className="flex items-center border-r border-gray-300 pr-4 h-full cursor-pointer">
         <Image src="/logo.png" width={20} height={20} alt="logo" />
-        <span className="text-lg font-bold ml-2">GeoTransfer</span>
+        <span className="text-lg font-bold ml-2">ZeroPay</span>
       </Link>
       <nav className="h-full flex items-center gap-x-5 pl-4">
         <Link href="/" className={`${pathname === "/" ? "link active" : "link"}`}>Главная</Link>
