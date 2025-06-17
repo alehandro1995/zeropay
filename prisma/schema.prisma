@@ -89,7 +89,7 @@ model Transaction {
 	deviceId    	Int?
 	amount      	Float
 	status      	TransactionStatus   @default(PENDING)
-	type        	TransactionType
+	type        	TransactionType			//TODO: Add default value if needed
 	createdAt   	DateTime  @default(now())
 	description 	String?
 }
